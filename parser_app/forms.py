@@ -6,4 +6,4 @@ class DocumentForm(forms.ModelForm):
     class Meta:
         model = job
         fields = ('jobid', 'jobrole', 'jobdate',
-                  'joblocation', 'jobrole', 'jobdescription', 'p1', 'p2', 'jobexp')
+                  'joblocation', 'jobdescription','jobexp', 'p1', 'p2')

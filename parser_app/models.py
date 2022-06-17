@@ -85,8 +85,7 @@ class applicants(models.Model):
     username = models.CharField(
         'Username', max_length=255, null=True, blank=True)
     email = models.CharField('Email', max_length=255, null=True, blank=True)
-    mobile_number = models.CharField(
-        'Mobile Number',  max_length=255, null=True, blank=True)
+    #mobile_number = models.CharField('Mobile Number',  max_length=255, null=True, blank=True)
     password = models.CharField(
         'Password', max_length=255, null=True, blank=True)
     cpassword = models.CharField(

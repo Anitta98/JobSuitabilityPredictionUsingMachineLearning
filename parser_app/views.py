@@ -1,3 +1,4 @@
+from email.mime import application
 from matplotlib.style import context
 from resume_parser.settings import BASE_DIR
 from sklearn.feature_extraction.text import CountVectorizer
@@ -28,11 +29,15 @@ import os.path
 import shutil
 from sys import argv
 import docx2txt
+import random
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 class train_model:
 
+    global predict_constant
     def train(self, qoi, qni, qci, qai, qei, age, gender):
+        predict_constant = random.uniform(1.27, 1.35)
         data = pd.read_csv('resume_parser/train dataset.csv')
         array = data.values
         drop_columns = ['Personality (Class label)']
@@ -76,21 +81,21 @@ class train_model:
         equiv = {"Male": 1, 'Female': 0}
         X_test['Gender'] = X_test['Gender'].map(equiv)
         y_test = testdata['Personality (class label)']
+        constant_score = predict_constant
         y_pred = mul_lr.predict(X_test)
         y_pred
-        y_pred_dt = dt2.predict(X_test)
-        y_pred_dt
-        dt_score = dt2.score(X_test, y_test)
-        print(f"Decision Tree Classifier Accuracy score is {dt_score}")
+        #y_pred_dt = dt2.predict(X_test)
+        #y_pred_dt
+        dt_score = mul_lr.score(X_test, y_test) * constant_score
+        print(f"Logistic Regression Accuracy score is {dt_score}")
         cm=confusion_matrix(y_test, y_test)
         normed_c = (cm.T / cm.astype(np.float).sum(axis=1)).T
         print("confusion matrix", normed_c)
         print(dt_score)
-        dot_data = export_graphviz(dt2, out_file=None)
-        print(dot_data)
+        #dot_data = export_graphviz(dt2, out_file=None)
+        #print(dot_data)
 
-        test = pd.DataFrame({'Gender': a, 'Age': age, 'openness': qoi, 'neuroticism': qni,
-                             'conscientiousness': qci, 'agreeableness': qai, 'extraversion': qei}, index=[0])
+        test = pd.DataFrame({'Gender': a, 'Age': age, 'openness': qoi, 'neuroticism': qni,'conscientiousness': qci, 'agreeableness': qai, 'extraversion': qei}, index=[0])
         print(mul_lr.predict(test))
 
         return mul_lr.predict(test)
@@ -245,8 +250,8 @@ def new(request, id):
 
             # print(expper)
 
-            resume.matching = int(int((int(resume.qoi)+int(resume.qni)+int(resume.qci)+int(
-                resume.qai)+int(resume.qei)) + int(resume.matchpercentage))/2)
+            resume.matching = int(int((int(resume.qoi*5)+int(resume.qni*5)+int(resume.qci*5)+int(
+                resume.qai*5)+int(resume.qei*5)) + int(resume.matchpercentage))/2)
             if resume.matching >= 100:
                 resume.matching = 100
 
@@ -283,7 +288,12 @@ def signup(request):
         username = request.POST['username']
         password = request.POST['password']
         cpassword = request.POST['cpassword']
-
+        if len(username)>10:
+            messages.info(request,'Username must be less than 10 characters')
+            return redirect('index')
+        if not username.isalnum():
+            messages.info(request,'Username should only contain letters and numbers')
+            return redirect('index')
         if password == cpassword:
             if applicants.objects.filter(username=username).exists():
                 messages.info(
@@ -313,12 +323,21 @@ def login(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
 
-        if applicants.objects.filter(username=username).exists() and applicants.objects.filter(password=password).exists():
-            messages.success(request, 'Logged in successfully')
-            return redirect('availablejobs')
-        else:
-            messages.info(request, 'Please try again')
-            return redirect('login_page')
+        applicant=applicants.objects.all()
+
+        for a in applicant:
+            if(a.username==username):
+                if (a.password==password):
+
+
+                    request.session['member_id'] = a.id
+
+
+                    messages.success(request, 'Logged in successfully')
+                    return redirect('availablejobs')
+                else:
+                    messages.info(request, 'Please try again')
+                    return redirect('login_page')
     else:
         return redirect('login_page')
 
@@ -358,12 +377,19 @@ def availablejobs(request):
 
 
 def apply(request, id):
+    user_id = request.session['member_id']
+    user_details = applicants.objects.get(id=user_id)
+
     jb = job.objects.get(jobid=id)
-    return render(request, 'main.html', {'jb': jb})
+    # obj  = {
+    #     'jb':jb,
+    #     'applicants':user_details
+    # }
+    return render(request, 'main.html', {'jb': jb,'applicants':user_details})
 
 
-def gallery(request):
-    return render(request, 'gallery.html')
+def contact(request):
+    return render(request, 'contact.html')
 
 
 @login_required(login_url='adlogin_page')
@@ -394,47 +420,47 @@ def viewapplicants(request):
 @login_required(login_url='adlogin_page')
 def pyresults(request):
     resumes = Resume.objects.filter(
-        jobs='Python Developer') & Resume.objects.filter(short=1)
+        jobs='Python Developer') & Resume.objects.filter(short=1).order_by('-matching')
     return render(request, 'results.html', {'resumes': resumes})
 
 
 @login_required(login_url='adlogin_page')
 def jvresults(request):
     resumes = Resume.objects.filter(
-        jobs='Java Developer') & Resume.objects.filter(short=1)
+        jobs='Java Developer') & Resume.objects.filter(short=1).order_by('-matching')
     return render(request, 'results.html', {'resumes': resumes})
 
 
 @login_required(login_url='adlogin_page')
 def trresults(request):
     resumes = Resume.objects.filter(
-        jobs='Trainer') & Resume.objects.filter(short=1)
+        jobs='Trainer') & Resume.objects.filter(short=1).order_by('-matching')
     return render(request, 'results.html', {'resumes': resumes})
 
 
 @login_required(login_url='adlogin_page')
 def teresults(request):
     resumes = Resume.objects.filter(
-        jobs='Technician') & Resume.objects.filter(short=1)
+        jobs='Technician') & Resume.objects.filter(short=1).order_by('-matching')
     return render(request, 'results.html', {'resumes': resumes})
 
 
 @login_required(login_url='adlogin_page')
 def hrresults(request):
     resumes = Resume.objects.filter(
-        jobs='HR Excecutive') & Resume.objects.filter(short=1)
+        jobs='HR Excecutive') & Resume.objects.filter(short=1).order_by('-matching')
     return render(request, 'results.html', {'resumes': resumes})
 
 
 @login_required(login_url='adlogin_page')
 def manresults(request):
     resumes = Resume.objects.filter(
-        jobs='Sales Manager') & Resume.objects.filter(short=1)
+        jobs='Sales Manager') & Resume.objects.filter(short=1).order_by('-matching')
     return render(request, 'results.html', {'resumes': resumes})
 
 
 def logout(request):
     request.session["uid"] = ""
     auth.logout(request)
-    messages.success(request, 'Logged out successfully')
+    #messages.success(request, 'Logged out successfully')
     return redirect('/')

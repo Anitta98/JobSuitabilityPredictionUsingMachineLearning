@@ -1,728 +1,895 @@
 {% load static %}
 {% load active %}
-{% load crispy_forms_tags %} 
-<style>
-  body {
-    background-image: url('https://c1.wallpaperflare.com/preview/307/672/872/above-art-background-black.jpg');
-    background-repeat: no-repeat;
-      background-size: cover;
-      background-attachment: fixed;
+{% load crispy_forms_tags %}
 
-    }
-    
-</style>
- <head>
-   <title>Test</title>
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-  </head>
-  <body>
-    <div class="container">
-        <div class="row">
-          <div class="col-md-12 mt-3">
-              <center>
-              <h2>Personality Test</h>
-              </center>
-          </div>
-          <center></center>
-          <form action="{% url 'new' jb.jobid %}" method="post" style="margin: auto; width: 500px;" enctype="multipart/form-data">
-            {% csrf_token %}
-                <div class="w3-card">
-                    <div class="card-body">
-                      {{ form|crispy }}
-
-                      <div class="card">
-                        <div class="card-body">
-                          <center> <h3 >Job Vaccancy Overview</h3></center>
-                          
-                  <div class="col-md-12 mt-3">
-                    <label for="">Applying for(Job Name): </label>
-                    <select class="form-select" for="jobs" name="jobs" required>
-                      <option value="{{jb.jobrole}}">{{jb.jobrole}}</option>
-                    </select>
-                </div>
-                  <div class="col-md-12 mt-3">
-                    <label for="">Applying for(Job Description): </label>
-                    <select class="form-select" for="jobsss" name="jobsss" required>
-                      <option value="{{jb.jobdescription}}">{{jb.jobdescription}}</option>
-                    </select>
-                    </div>
-                    <div class="col-md-12 mt-3">
-                      <label for="">Personality Required 1: </label>
-                      <select class="form-select" for="p1" name="p1" required>
-                        <option value="{{jb.p1}}">{{jb.p1}}</option>
-                      </select>
-                      </div>
-                      <div class="col-md-12 mt-3">
-                        <label for="">Personality Required 2: </label>
-                        <select class="form-select" for="p2" name="p2" required>
-                          <option value="{{jb.p2}}">{{jb.p2}}</option>
-                        </select>
-                        </div>
-                        <div class="col-md-12 mt-3">
-                          <label for="">Years of Experience Required: </label>
-                          <select class="form-select" for="expr" name="expr" required>
-                            <option value="{{jb.jobexp}}">{{jb.jobexp}}</option>
-                          </select>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col-md-12 mt-3">
-                        <div class="card">
-                          <div class="card-body">
-                        <label for="">Name: </label>
-                        <input type="text" name="fullname" class="form-control" required />
-                    </div>  
-                        <div class="col-md-12 mt-3">
-                            <label for="">Age (17 to 28): </label>
-                            <input type="text" id="age" name="age" class="form-control" required/>
-                        </div>
-                        <div class="col-md-12 mt-3">
-                          <label for="">Experience: </label>
-                          <input type="text" id="exp" name="exp" class="form-control" required/>
-                      </div>
-                        <div class="col-md-12 mt-3">
-                            <label for="">Gender: </label>
-                            <select class="form-select" for="gender"name="gender" required >
-                              <option value="Male">Male</option>
-                              <option  value="Female">Female</option>
-                            </select>
-                        </div>
-                        
-                      
-                        <div class="col-md-12 mt-3">
-                          <label for="">Resume: </label>
-                          <input type="file" id="resume" name='resume' name="filename" required>
-                        </div><br>
-                      </div>
-                    </div>
-                  <label >Please fill the following questionaire:</label>
-                        <!--Openness start-->
-                <div class="card">
-                    <div class="card-body">
-                      <form action="thankyou" required>
-                        <p class="fw-bold">1.Have a rich Vocabulary</p>
-                        <div class="form-check mb-2">
-                          <input class="form-check-input" type="radio" name="qo1" id="qo1" value="1" required/>
-                          <label class="form-check-label" for="qo1">Disagree</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qo1" id="qo1" value="2" />
-                            <label class="form-check-label" for="qo1">Slighty Disagree</label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qo1" id="qo1"value="3" />
-                            <label class="form-check-label" for="qo1">Neutral</label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qo1" id="qo1" value="4"/>
-                            <label class="form-check-label" for="qo1">Slightly Agree</label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qo1" id="qo1"  value="5"/>
-                            <label class="form-check-label" for="qo1">Agree</label>
-                          </div>
-                       
-
-                        <p class="fw-bold">2.Enjoy New Experience or thing</p>
-                        <div class="form-check mb-2">
-                          <input class="form-check-input" type="radio" name="qo2" id="qo2" value="1" required />
-                          <label class="form-check-label" for="qo2">Disagree</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qo2" id="qo2" value="2"/>
-                            <label class="form-check-label" for="qo2">Slighty Disagree</label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qo2" id="qo2" value="3"/>
-                            <label class="form-check-label" for="qo2">Neutral</label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qo2" id="qo2" value="4" />
-                            <label class="form-check-label" for="qo2">Slightly Agree</label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qo2" id="qo2"  value="5"/>
-                            <label class="form-check-label" for="qo2">Agree</label>
-                          </div>
-               
-
-                        <p class="fw-bold">3.Have difficulty understanding abstract ideas</p>
-                        <div class="form-check mb-2">
-                          <input class="form-check-input" type="radio" name="qo3" id="qo3" value="1" required />
-                          <label class="form-check-label" for="qo3">Disagree</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qo3" id="qo3" value="2" />
-                            <label class="form-check-label" for="qo3">Slighty Disagree</label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qo3" id="qo3" value="3"/>
-                            <label class="form-check-label" for="qo3">Neutral</label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qo3" id="qo3" value="4"/>
-                            <label class="form-check-label" for="qo3">Slightly Agree</label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qo3" id="qo3"  value="5"/>
-                            <label class="form-check-label" for="qo3">Agree</label>
-                          </div>
-                        
-
-                        <p class="fw-bold">4.Have vivid imagination</p>
-                        <div class="form-check mb-2">
-                          <input class="form-check-input" type="radio" name="qo4" id="qo4" value="1" required/>
-                          <label class="form-check-label" for="qo4">Disagree</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qo4" id="qo4" value="2" />
-                            <label class="form-check-label" for="qo4">Slighty Disagree</label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qo4" id="qo4" value="3"/>
-                            <label class="form-check-label" for="qo4">Neutral</label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qo4" id="qo4" value="4"/>
-                            <label class="form-check-label" for="qo4">Slightly Agree</label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qo4" id="qo4"  value="5"/>
-                            <label class="form-check-label" for="qo4">Agree</label>
-                          </div>
-                        </div>
-                    </div><br>
-
-                        <!--Openness end-->
-
-                        <!--Neuroticism -->
-
-              <div class="card">
-                 <div class="card-body">
-                        <p class="fw-bold">5.Get stressed out easily</p>
-                        <div class="form-check mb-2">
-                          <input class="form-check-input" type="radio" name="qn1" id="qn1" value="1" required />
-                          <label class="form-check-label" for="qn1">Disagree</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qn1" id="qn1" value="2"/>
-                            <label class="form-check-label" for="qn1">Slighty Disagree</label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qn1" id="qn1" value="3" />
-                            <label class="form-check-label" for="qn1">Neutral</label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qn1" id="qn1" value="4"/>
-                            <label class="form-check-label" for="qn1">Slightly Agree</label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qn1" id="qn1"  value="5"/>
-                            <label class="form-check-label" for="qn1">Agree</label>
-                          </div>
-                       
-
-                        <p class="fw-bold">6.Am relaxed most of the time</p>
-                        <div class="form-check mb-2">
-                          <input class="form-check-input" type="radio" name="qn2" id="qn2" value="1" required/>
-                          <label class="form-check-label" for="qn2">Disagree</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qn2" id="qn2" value="2"/>
-                            <label class="form-check-label" for="qn2">Slighty Disagree</label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qn2" id="qn2" value="3" />
-                            <label class="form-check-label" for="qn2">Neutral</label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qn2" id="qn2" value="4"/>
-                            <label class="form-check-label" for="qn2">Slightly Agree</label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qn2" id="qn2"  value="5"/>
-                            <label class="form-check-label" for="qn2">Agree</label>
-                          </div>
-               
-
-                        <p class="fw-bold">7.Worry about things</p>
-                        <div class="form-check mb-2">
-                          <input class="form-check-input" type="radio" name="qn3" id="qn3" value="1" required/>
-                          <label class="form-check-label" for="qn3">Disagree</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qn3" id="qn3" value="2"/>
-                            <label class="form-check-label" for="qn3">Slighty Disagree</label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qn3" id="qn3" value="3"/>
-                            <label class="form-check-label" for="qn3">Neutral</label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qn3" id="qn3" value="4" />
-                            <label class="form-check-label" for="qn3">Slightly Agree</label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qn3" id="qn3"  value="5"/>
-                            <label class="form-check-label" for="qn3">Agree</label>
-                          </div>
-                        
-
-                        <p class="fw-bold">8.Seldom feel blue</p>
-                        <div class="form-check mb-2">
-                          <input class="form-check-input" type="radio" name="qn4" id="qn4" value="1" required/>
-                          <label class="form-check-label" for="qn4">Disagree</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qn4" id="qn4"value="2" />
-                            <label class="form-check-label" for="qn4">Slighty Disagree</label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qn4" id="qn4" value="3" />
-                            <label class="form-check-label" for="qn4">Neutral</label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qn4" id="qn4" value="4"/>
-                            <label class="form-check-label" for="qn4">Slightly Agree</label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qn4" id="qn4"  value="5"/>
-                            <label class="form-check-label" for="qn4">Agree</label>
-                          </div>
-                        </div>
-                    </div><br>
-                        
-                     <!--Neuroticism end-->
-
-                    <!--Conscientiousness -->
-                    
-             <div class="card">
-                <div class="card-body">
-                        <p class="fw-bold">9.Am always prepared</p>
-                    <div class="form-check mb-2">
-                      <input class="form-check-input" type="radio" name="qc1" id="qc1" value="1" required />
-                      <label class="form-check-label" for="qc1">Disagree</label>
-                    </div>
-                    <div class="form-check mb-2">
-                        <input class="form-check-input" type="radio" name="qc1" id="qc1" value="2"/>
-                        <label class="form-check-label" for="qc1">Slighty Disagree</label>
-                      </div>
-                      <div class="form-check mb-2">
-                        <input class="form-check-input" type="radio" name="qc1" id="qc1" value="3"/>
-                        <label class="form-check-label" for="qc1">Neutral</label>
-                      </div>
-                      <div class="form-check mb-2">
-                        <input class="form-check-input" type="radio" name="qc1" id="qc1" value="4"/>
-                        <label class="form-check-label" for="qc1">Slightly Agree</label>
-                      </div>
-                      <div class="form-check mb-2">
-                        <input class="form-check-input" type="radio" name="qc1" id="qc1"   value="5"/>
-                        <label class="form-check-label" for="qc1">Agree</label>
-                      </div>
-                   
-
-                    <p class="fw-bold">10.Leave my belongings around</p>
-                    <div class="form-check mb-2">
-                      <input class="form-check-input" type="radio" name="qc2" id="qc2" value="1" required/>
-                      <label class="form-check-label" for="qc2">Disagree</label>
-                    </div>
-                    <div class="form-check mb-2">
-                        <input class="form-check-input" type="radio" name="qc2" id="qc2" value="2"/>
-                        <label class="form-check-label" for="qc2">Slighty Disagree</label>
-                      </div>
-                      <div class="form-check mb-2">
-                        <input class="form-check-input" type="radio" name="qc2" id="qc2" value="3"/>
-                        <label class="form-check-label" for="qc2">Neutral</label>
-                      </div>
-                      <div class="form-check mb-2">
-                        <input class="form-check-input" type="radio" name="qc2" id="qc2" value="4"/>
-                        <label class="form-check-label" for="qc2">Slightly Agree</label>
-                      </div>
-                      <div class="form-check mb-2">
-                        <input class="form-check-input" type="radio" name="qc2" id="qc2"  value="5" />
-                        <label class="form-check-label" for="qc2">Agree</label>
-                      </div>
-           
-
-                    <p class="fw-bold">11.Pay attention to details</p>
-                    <div class="form-check mb-2">
-                      <input class="form-check-input" type="radio" name="qc3" id="qc3" value="1" required/>
-                      <label class="form-check-label" for="qc3">Disagree</label>
-                    </div>
-                    <div class="form-check mb-2">
-                        <input class="form-check-input" type="radio" name="qc3" id="qc3" value="2"/>
-                        <label class="form-check-label" for="qc3">Slighty Disagree</label>
-                      </div>
-                      <div class="form-check mb-2">
-                        <input class="form-check-input" type="radio" name="qc3" id="qc3" value="3"/>
-                        <label class="form-check-label" for="qc3">Neutral</label>
-                      </div>
-                      <div class="form-check mb-2">
-                        <input class="form-check-input" type="radio" name="qc3" id="qc3" value="4"/>
-                        <label class="form-check-label" for="qc3">Slightly Agree</label>
-                      </div>
-                      <div class="form-check mb-2">
-                        <input class="form-check-input" type="radio" name="qc3" id="qc3"  value="5" />
-                        <label class="form-check-label" for="qc3">Agree</label>
-                      </div>
-                    
-
-                    <p class="fw-bold">12.Make a mess of things</p>
-                    <div class="form-check mb-2">
-                      <input class="form-check-input" type="radio" name="qc4" id="qc4" value="1" required/>
-                      <label class="form-check-label" for="qc4">Disagree</label>
-                    </div>
-                    <div class="form-check mb-2">
-                        <input class="form-check-input" type="radio" name="qc4" id="qc4" value="2"/>
-                        <label class="form-check-label" for="qc4">Slighty Disagree</label>
-                      </div>
-                      <div class="form-check mb-2">
-                        <input class="form-check-input" type="radio" name="qc4" id="qc4" value="3"/>
-                        <label class="form-check-label" for="qc4">Neutral</label>
-                      </div>
-                      <div class="form-check mb-2">
-                        <input class="form-check-input" type="radio" name="qc4" id="qc4" value="4"/>
-                        <label class="form-check-label" for="qc4">Slightly Agree</label>
-                      </div>
-                      <div class="form-check mb-2">
-                        <input class="form-check-input" type="radio" name="qc4" id="qc4"  value="5" />
-                        <label class="form-check-label" for="qc4">Agree</label>
-                      </div>
-                    </div>
-                </div><br>
-                
-                    
-
-                    <!--Conscientiousness end-->
-
-                    <!--Agreeableness -->
-
-                        <div class="card">
-                            <div class="card-body">
-                                <p class="fw-bold">13.Feel a little concern for others</p>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qa1" id="qa1" value="1"  required/>
-                            <label class="form-check-label" for="qa1">Disagree</label>
-                          </div>
-                          <div class="form-check mb-2">
-                              <input class="form-check-input" type="radio" name="qa1" id="qa1" value="2" />
-                              <label class="form-check-label" for="qa1">Slighty Disagree</label>
-                            </div>
-                            <div class="form-check mb-2">
-                              <input class="form-check-input" type="radio" name="qa1" id="qa1" value="3"/>
-                              <label class="form-check-label" for="qa1">Neutral</label>
-                            </div>
-                            <div class="form-check mb-2">
-                              <input class="form-check-input" type="radio" name="qa1" id="qa1" value="4" />
-                              <label class="form-check-label" for="qa1">Slightly Agree</label>
-                            </div>
-                            <div class="form-check mb-2">
-                              <input class="form-check-input" type="radio" name="qa1" id="qa1"  value="5" />
-                              <label class="form-check-label" for="qa1">Agree</label>
-                            </div>
-                        
-
-                          <p class="fw-bold">14.Am interested in people</p>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qa2" id="qa2" value="1" required/>
-                            <label class="form-check-label" for="qa2">Disagree</label>
-                          </div>
-                          <div class="form-check mb-2">
-                              <input class="form-check-input" type="radio" name="qa2" id="qa2" value="2"/>
-                              <label class="form-check-label" for="qa2">Slighty Disagree</label>
-                            </div>
-                            <div class="form-check mb-2">
-                              <input class="form-check-input" type="radio" name="qa2" id="qa2" value="3" />
-                              <label class="form-check-label" for="qa2">Neutral</label>
-                            </div>
-                            <div class="form-check mb-2">
-                              <input class="form-check-input" type="radio" name="qa2" id="qa2" value="4"/>
-                              <label class="form-check-label" for="qa2">Slightly Agree</label>
-                            </div>
-                            <div class="form-check mb-2">
-                              <input class="form-check-input" type="radio" name="qa2" id="qa2"  value="5"/>
-                              <label class="form-check-label" for="qa2">Agree</label>
-                            </div>
-                
-
-                        <p class="fw-bold">15.Insult People</p>
-                        <div class="form-check mb-2">
-                          <input class="form-check-input" type="radio" name="qa3" id="qa3" value="1" required/>
-                          <label class="form-check-label" for="qa3">Disagree</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qa3" id="qa3" value="2"/>
-                            <label class="form-check-label" for="qa3">Slighty Disagree</label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qa3" id="qa3" value="3" />
-                            <label class="form-check-label" for="qa3">Neutral</label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qa3" id="qa3" value="4"/>
-                            <label class="form-check-label" for="qa3">Slightly Agree</label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qa3" id="qa3"  value="5"/>
-                            <label class="form-check-label" for="qa3">Agree</label>
-                          </div>
-                        
-
-                        <p class="fw-bold">16.Symathize with others feelings</p>
-                        <div class="form-check mb-2">
-                          <input class="form-check-input" type="radio" name="qa4" id="qa4" value="1" required/>
-                          <label class="form-check-label" for="qa4">Disagree</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qa4" id="qa4" value="2"/>
-                            <label class="form-check-label" for="qa4">Slighty Disagree</label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qa4" id="qa4" value="3"/>
-                            <label class="form-check-label" for="qa4">Neutral</label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qa4" id="qa4" value="4"/>
-                            <label class="form-check-label" for="qa4">Slightly Agree</label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qa4" id="qa4"  value="5"/>
-                            <label class="form-check-label" for="qa4">Agree</label>
-                          </div>
-                        </div>
-                    </div><br>
-                        
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="author" content="pc">
+	<title>Test</title>
 
 
-                    <!--Agreeableness end-->
-
-                    <!--Extraversion -->
-                    
-                        <div class="card">
-                            <div class="card-body">
-                                <p class="fw-bold">17.Am the life of the party</p>
-                        <div class="form-check mb-2">
-                          <input class="form-check-input" type="radio" name="qe1" id="qe1" value="1" required/>
-                          <label class="form-check-label" for="qe1">Disagree</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qe1" id="qe1" value="2" />
-                            <label class="form-check-label" for="qe1">Slighty Disagree</label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qe1" id="qe1" value="3" />
-                            <label class="form-check-label" for="qe1">Neutral</label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qe1" id="qe1" value="4"/>
-                            <label class="form-check-label" for="qe1">Slightly Agree</label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qe1" id="qe1"  value="5"/>
-                            <label class="form-check-label" for="qe1">Agree</label>
-                          </div>
-                       
-
-                        <p class="fw-bold">18.Dont talk a lot</p>
-                        <div class="form-check mb-2">
-                          <input class="form-check-input" type="radio" name="qe2" id="qe2" value="1" required/>
-                          <label class="form-check-label" for="qe2">Disagree</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qe2" id="qe2" value="2"/>
-                            <label class="form-check-label" for="qe2">Slighty Disagree</label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qe2" id="qe2" value="3" />
-                            <label class="form-check-label" for="qe2">Neutral</label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qe2" id="qe2" value="4"/>
-                            <label class="form-check-label" for="qe2">Slightly Agree</label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qe2" id="qe2"  value="5"/>
-                            <label class="form-check-label" for="qe2">Agree</label>
-                          </div>
-               
-
-                        <p class="fw-bold">19.Feel comfortable around people</p>
-                        <div class="form-check mb-2">
-                          <input class="form-check-input" type="radio" name="qe3" id="qe3" value="1" required/>
-                          <label class="form-check-label" for="qe3">Disagree</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qe3" id="qe3" value="2"/>
-                            <label class="form-check-label" for="qe3">Slighty Disagree</label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qe3" id="qe3"value="3" />
-                            <label class="form-check-label" for="qe3">Neutral</label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qe3" id="qe3" value="4" />
-                            <label class="form-check-label" for="qe3">Slightly Agree</label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qe3" id="qe3"  value="5"/>
-                            <label class="form-check-label" for="qe3">Agree</label>
-                          </div>
-                        
-
-                        <p class="fw-bold">20.Keep in the background</p>
-                        <div class="form-check mb-2">
-                          <input class="form-check-input" type="radio" name="qe4" id="qe4" value="1" required/>
-                          <label class="form-check-label" for="qe4">Disagree</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qe4" id="qe4" value="2"/>
-                            <label class="form-check-label" for="qe4">Slighty Disagree</label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qe4" id="qe4" value="3" />
-                            <label class="form-check-label" for="qe4">Neutral</label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qe4" id="qe4" value="4" />
-                            <label class="form-check-label" for="qe4">Slightly Agree</label>
-                          </div>
-                          <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="qe4" id="qe4"  value="5"/>
-                            <label class="form-check-label" for="qe4">Agree</label>
-                          </div>
-                        </div>
-                    </div><br>
-                  </form>
-
-                    <!--Extraversion end-->
-
-                        <div class="col-md-12 mt-3 mb-3">
-                            <button type="submit" class="btn btn-primary w-100" onclick="check()">Submit</button>
-                        </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-md-3"></div>
-            </div>
-
-  </form>
-
-</div>
-
-    </div>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
 
 
 
 
-  </body>
-  </html>
 
-{% comment %} <script>
-  function sortTable() {
-    var table, rows, switching, i, x, y, shouldSwitch;
-    table = document.getElementById("myTable");
-    switching = true;
-    while (switching) {
-      switching = false;
-      rows = table.rows;
-       for (i = 1; i < (rows.length - 1); i++) {
-        shouldSwitch = false;
-        x = rows[i].getElementsByTagName("TD")[0];
-        y = rows[i + 1].getElementsByTagName("TD")[0];
-        if (Number(x.innerHTML) > Number(y.innerHTML)) {
-          shouldSwitch = true;
-          break;
-        }
-      }
-      if (shouldSwitch) {
-        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-        switching = true;
-      }
-    }
-  }
-  </script> {% endcomment %}
-  <script>
+	<!--<link rel="stylesheet" href="{% static '../../../maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'%}" />-->
+	{% comment %} <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+		crossorigin="anonymous"></script> {% endcomment %}
+	<!--{% load static %}-->
+	<!-- Styles -->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-grid.css'%}" />
+	<link rel="stylesheet" href="{% static 'css/icons.css'%}">
+	<link rel="stylesheet" href="{% static 'css/animate.min.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/responsive.css'%}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/chosen.css'%}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/colors/colors.css'%}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css'%}" />
+	<link rel="stylesheet"
+		href="{% static '../../../maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'%}" />
+</head>
 
-    document.addEventListener('click', function (e) {
-      try {
-        // allows for elements inside TH
-        function findElementRecursive(element, tag) {
-          return element.nodeName === tag ? element : findElementRecursive(element.parentNode, tag)
-        }
-    
-        var down_class = ' dir-d '
-        var up_class = ' dir-u '
-        var regex_dir = / dir-(u|d) /
-        var regex_table = /\bsortable\b/
-        var alt_sort = e.shiftKey || e.altKey
-        var element = findElementRecursive(e.target, 'TH')
-        var tr = findElementRecursive(element, 'TR')
-        var table = findElementRecursive(tr, 'TABLE')
-    
-        function reClassify(element, dir) {
-          element.className = element.className.replace(regex_dir, '') + dir
-        }
-    
-        function getValue(element) {
-     
-          return (
-            (alt_sort && element.getAttribute('data-sort-alt')) || element.getAttribute('data-sort') || element.innerText
-          )
-        }
-        if (regex_table.test(table.className)) {
-          var column_index
-          var nodes = tr.cells
-    
-          for (var i = 0; i < nodes.length; i++) {
-            if (nodes[i] === element) {
-              column_index = i
-            } else {
-              reClassify(nodes[i], '')
-            }
-          }
-    
-          var dir = down_class
-    
-          if (element.className.indexOf(down_class) !== -1) {
-            dir = up_class
-          }
-    
-          reClassify(element, dir)
-    
-          var org_tbody = table.tBodies[0]
-    
-          var rows = [].slice.call(org_tbody.rows, 0)
-    
-          var reverse = dir === up_class
-              rows.sort(function (a, b) {
-            var x = getValue((reverse ? a : b).cells[column_index])
-            var y = getValue((reverse ? b : a).cells[column_index])
-            return isNaN(x - y) ? x.localeCompare(y) : x - y
-          })
-              var clone_tbody = org_tbody.cloneNode()
-              while (rows.length) {
-            clone_tbody.appendChild(rows.splice(0, 1)[0])
-          }
-          table.replaceChild(clone_tbody, org_tbody)
-        }
-      } catch (error) {
-      }
-    })
-    
-  </script>
+<body>
+	{% for msg in messages %}
+	<script>
+		window.onload = function () { alert('{{msg}}') }
+	</script>
+	{% endfor %}
+	<header class="style5">
+		<div class="menu-sec">
+			<div class="container-fluid">
+				<nav>
+					
+					
+				</nav><!-- Menus -->
+				<div class="logo">
+					<a href="index.html" title=""><img src="{% static 'images/resource/logo8.png'%}" alt="" /></a>
+				</div><!-- Logo -->
+				
+			</div>
+		</div>
+	</header>
+	<div class="container-fluid">
+		<div class="row">
+			<form action="{% url 'new' jb.jobid %}" method="post" style="margin: auto; width: 500px;"
+				enctype="multipart/form-data">
+				{% csrf_token %}
+				<div class="w3-card">
+					<div class="card-body">
+						{{ form|crispy }}
 
-  <script>
-    function check(){
-        var nbr;
-        nbr = Number(document.getElementById("age").value);
-        if(nbr < 17 || nbr>28)
-        {
-           alert("Please enter a age between 17 to 28");
-        }
-    }
- </script>
+
+
+
+
+
+
+
+
+
+						<div class="accordion" id="accordionExample">
+							<div class="accordion-item">
+								<h2 class="accordion-header" id="headingOne">
+									<button class="accordion-button" type="button" data-bs-toggle="collapse"
+										data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+										<div class="col-12 mt-3">
+											<center>
+												<h2>Please Enter Basic Details</h2>
+											</center>
+										</div>
+									</button>
+								</h2>
+								<div id="collapseOne" class="accordion-collapse collapse show"
+									aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+									<div class="accordion-body">
+										<!-- content  -->
+										<div class="card">
+											<div class="card-body" style="display: none !important;">
+												<center>
+													<h3>Job Vaccancy Overview</h3>
+												</center>
+
+												<div class="col-12 mt-3" style="display: none !important;">
+													<label for="">Applying for(Job Name): </label>
+													<select class="form-select" for="jobs" name="jobs" required>
+														<option value="{{jb.jobrole}}">{{jb.jobrole}}</option>
+													</select>
+												</div>
+												<div class="col-12 mt-3" style="display: none !important;">
+													<label for="">Applying for(Job Description): </label>
+													<select class="form-select" for="jobsss" name="jobsss" required>
+														<option value="{{jb.jobdescription}}">{{jb.jobdescription}}
+														</option>
+													</select>
+												</div>
+												<div class="col-12 mt-3" style="display: none !important;">
+													<label for="">Personality Required 1: </label>
+													<select class="form-select" for="p1" name="p1" required>
+														<option value="{{jb.p1}}">{{jb.p1}}</option>
+													</select>
+												</div>
+												<div class="col-12 mt-3" style="display: none !important;">
+													<label for="">Personality Required 2: </label>
+													<select class="form-select" for="p2" name="p2" required>
+														<option value="{{jb.p2}}">{{jb.p2}}</option>
+													</select>
+												</div>
+												<div class="col-12 mt-3" style="display: none !important;">
+													<label for="">Years of Experience Required: </label>
+													<select class="form-select" for="expr" name="expr" required>
+														<option value="{{jb.jobexp}}">{{jb.jobexp}}</option>
+													</select>
+												</div>
+											</div>
+										</div>
+
+										<div class="mt-3">
+											<div class="card">
+												<div class="card-body">
+
+													<div class="col-12 mt-3">
+														<label for="">Name: </label>
+														<input type="text" name="fullname" 
+															value="{{applicants.name}}" required />
+													</div>
+													<div class="col-12 mt-3">
+														<label for="">Age (17 to 28): </label>
+														<input type="text" id="age" name="age"
+															required />
+													</div>
+													<div class="col-12 mt-3">
+														<label for="">Experience: </label>
+														<input type="text" id="exp" name="exp"
+															required />
+													</div>
+													<div class="col-12 mt-3">
+														<label for="">Gender: </label>
+														<select for="gender" name="gender" required>
+															<option value="Male">Male</option>
+															<option value="Female">Female</option>
+														</select>
+													</div>
+													<div class="col-12 mt-3">
+														<label for="">Resume: </label>
+														<input type="file" id="resume" name='resume' name="filename"
+															required>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="accordion-item">
+								<h2 class="accordion-header" id="headingTwo">
+									<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+										data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+										<div class="col-12 mt-3">
+											<center>
+												<h3>Please fill the following questionaire:</h3>
+											</center>
+										</div>
+									</button>
+								</h2>
+								<div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+									data-bs-parent="#accordionExample">
+									<div class="accordion-body">
+										<!-- content  -->
+										<!--Openness start-->
+
+
+
+
+										<div class="card mt-3">
+											<div class="text-center">
+
+											</div>
+											<div class="card-body">
+												<form action="thankyou" required>
+													<p class="fw-bold">1.Have a rich Vocabulary</p>
+													<div class="form-check mb-2">
+														<input class="form-check-input" type="radio" name="qo1"
+															id="qo11" value="1" required />
+														<label class="form-check-label" for="qo11">Disagree</label>
+													</div>
+													<div class="form-check mb-2">
+														<input class="form-check-input" type="radio" name="qo1"
+															id="qo12" value="2" />
+														<label class="form-check-label" for="qo12">Slighty
+															Disagree</label>
+													</div>
+													<div class="form-check mb-2">
+														<input class="form-check-input" type="radio" name="qo1"
+															id="qo13" value="3" />
+														<label class="form-check-label" for="qo13">Neutral</label>
+													</div>
+													<div class="form-check mb-2">
+														<input class="form-check-input" type="radio" name="qo1"
+															id="qo14" value="4" />
+														<label class="form-check-label" for="qo14">Slightly
+															Agree</label>
+													</div>
+													<div class="form-check mb-2">
+														<input class="form-check-input" type="radio" name="qo1"
+															id="qo15" value="5" />
+														<label class="form-check-label" for="qo15">Agree</label>
+													</div>
+
+
+													<p class="fw-bold">2.Enjoy New Experience or thing</p>
+													<div class="form-check mb-2">
+														<input class="form-check-input" type="radio" name="qo2"
+															id="qo21" value="1" required />
+														<label class="form-check-label" for="qo21">Disagree</label>
+													</div>
+													<div class="form-check mb-2">
+														<input class="form-check-input" type="radio" name="qo2"
+															id="qo22" value="2" />
+														<label class="form-check-label" for="qo22">Slighty
+															Disagree</label>
+													</div>
+													<div class="form-check mb-2">
+														<input class="form-check-input" type="radio" name="qo2"
+															id="qo23" value="3" />
+														<label class="form-check-label" for="qo23">Neutral</label>
+													</div>
+													<div class="form-check mb-2">
+														<input class="form-check-input" type="radio" name="qo2"
+															id="qo24" value="4" />
+														<label class="form-check-label" for="qo24">Slightly
+															Agree</label>
+													</div>
+													<div class="form-check mb-2">
+														<input class="form-check-input" type="radio" name="qo2"
+															id="qo25" value="5" />
+														<label class="form-check-label" for="qo25">Agree</label>
+													</div>
+
+
+													<p class="fw-bold">3.Have difficulty understanding abstract ideas
+													</p>
+													<div class="form-check mb-2">
+														<input class="form-check-input" type="radio" name="qo3"
+															id="qo31" value="1" required />
+														<label class="form-check-label" for="qo31">Disagree</label>
+													</div>
+													<div class="form-check mb-2">
+														<input class="form-check-input" type="radio" name="qo3"
+															id="qo32" value="2" />
+														<label class="form-check-label" for="qo32">Slighty
+															Disagree</label>
+													</div>
+													<div class="form-check mb-2">
+														<input class="form-check-input" type="radio" name="qo3"
+															id="qo34" value="3" />
+														<label class="form-check-label" for="qo33">Neutral</label>
+													</div>
+													<div class="form-check mb-2">
+														<input class="form-check-input" type="radio" name="qo3"
+															id="qo34" value="4" />
+														<label class="form-check-label" for="qo34">Slightly
+															Agree</label>
+													</div>
+													<div class="form-check mb-2">
+														<input class="form-check-input" type="radio" name="qo3"
+															id="qo35" value="5" />
+														<label class="form-check-label" for="qo35">Agree</label>
+													</div>
+
+
+													<p class="fw-bold">4.Not interested in abstract ideas</p>
+													<div class="form-check mb-2">
+														<input class="form-check-input" type="radio" name="qo4"
+															id="qo41" value="1" required />
+														<label class="form-check-label" for="qo41">Disagree</label>
+													</div>
+													<div class="form-check mb-2">
+														<input class="form-check-input" type="radio" name="qo4"
+															id="qo42" value="2" />
+														<label class="form-check-label" for="qo42">Slighty
+															Disagree</label>
+													</div>
+													<div class="form-check mb-2">
+														<input class="form-check-input" type="radio" name="qo4"
+															id="qo43" value="3" />
+														<label class="form-check-label" for="qo43">Neutral</label>
+													</div>
+													<div class="form-check mb-2">
+														<input class="form-check-input" type="radio" name="qo4"
+															id="qo44" value="4" />
+														<label class="form-check-label" for="qo44">Slightly
+															Agree</label>
+													</div>
+													<div class="form-check mb-2">
+														<input class="form-check-input" type="radio" name="qo4"
+															id="qo45" value="5" />
+														<label class="form-check-label" for="qo45">Agree</label>
+													</div>
+											</div>
+										</div>
+
+										<!--Openness end-->
+
+										<!--Neuroticism -->
+
+										<div class="card">
+											<div class="card-body">
+												<p class="fw-bold">5.Get stressed out easily</p>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qn1" id="qn11"
+														value="1" required />
+													<label class="form-check-label" for="qn11">Disagree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qn1" id="qn12"
+														value="2" />
+													<label class="form-check-label" for="qn12">Slighty Disagree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qn1" id="qn13"
+														value="3" />
+													<label class="form-check-label" for="qn13">Neutral</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qn1" id="qn14"
+														value="4" />
+													<label class="form-check-label" for="qn14">Slightly Agree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qn1" id="qn15"
+														value="5" />
+													<label class="form-check-label" for="qn15">Agree</label>
+												</div>
+
+
+												<p class="fw-bold">6.Am relaxed most of the time</p>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qn2" id="qn21"
+														value="1" required />
+													<label class="form-check-label" for="qn21">Disagree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qn2" id="qn22"
+														value="2" />
+													<label class="form-check-label" for="qn22">Slighty Disagree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qn2" id="qn23"
+														value="3" />
+													<label class="form-check-label" for="qn23">Neutral</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qn2" id="qn24"
+														value="4" />
+													<label class="form-check-label" for="qn24">Slightly Agree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qn2" id="qn25"
+														value="5" />
+													<label class="form-check-label" for="qn25">Agree</label>
+												</div>
+
+
+												<p class="fw-bold">7.Worry about things</p>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qn3" id="qn31"
+														value="1" required />
+													<label class="form-check-label" for="qn31">Disagree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qn3" id="qn32"
+														value="2" />
+													<label class="form-check-label" for="qn32">Slighty Disagree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qn3" id="qn33"
+														value="3" />
+													<label class="form-check-label" for="qn33">Neutral</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qn3" id="qn34"
+														value="4" />
+													<label class="form-check-label" for="qn34">Slightly Agree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qn3" id="qn35"
+														value="5" />
+													<label class="form-check-label" for="qn35">Agree</label>
+												</div>
+
+
+												<p class="fw-bold">8.Seldom feel blue</p>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qn4" id="qn41"
+														value="1" required />
+													<label class="form-check-label" for="qn41">Disagree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qn4" id="qn42"
+														value="2" />
+													<label class="form-check-label" for="qn42">Slighty Disagree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qn4" id="qn43"
+														value="3" />
+													<label class="form-check-label" for="qn43">Neutral</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qn4" id="qn44"
+														value="4" />
+													<label class="form-check-label" for="qn44">Slightly Agree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qn4" id="qn45"
+														value="5" />
+													<label class="form-check-label" for="qn45">Agree</label>
+												</div>
+											</div>
+										</div><br>
+
+										<!--Neuroticism end-->
+
+										<!--Conscientiousness -->
+
+										<div class="card">
+											<div class="card-body">
+												<p class="fw-bold">9.Am always prepared</p>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qc1" id="qc11"
+														value="1" required />
+													<label class="form-check-label" for="qc11">Disagree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qc1" id="qc12"
+														value="2" />
+													<label class="form-check-label" for="qc12">Slighty Disagree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qc1" id="qc13"
+														value="3" />
+													<label class="form-check-label" for="qc13">Neutral</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qc1" id="qc14"
+														value="4" />
+													<label class="form-check-label" for="qc14">Slightly Agree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qc1" id="qc15"
+														value="5" />
+													<label class="form-check-label" for="qc15">Agree</label>
+												</div>
+
+
+												<p class="fw-bold">10.Leave my belongings around</p>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qc2" id="qc21"
+														value="1" required />
+													<label class="form-check-label" for="qc21">Disagree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qc2" id="qc22"
+														value="2" />
+													<label class="form-check-label" for="qc22">Slighty Disagree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qc2" id="qc23"
+														value="3" />
+													<label class="form-check-label" for="qc23">Neutral</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qc2" id="qc24"
+														value="4" />
+													<label class="form-check-label" for="qc24">Slightly Agree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qc2" id="qc25"
+														value="5" />
+													<label class="form-check-label" for="qc25">Agree</label>
+												</div>
+
+
+												<p class="fw-bold">11.Pay attention to details</p>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qc3" id="qc31"
+														value="1" required />
+													<label class="form-check-label" for="qc31">Disagree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qc3" id="qc32"
+														value="2" />
+													<label class="form-check-label" for="qc32">Slighty Disagree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qc3" id="qc33"
+														value="3" />
+													<label class="form-check-label" for="qc33">Neutral</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qc3" id="qc34"
+														value="4" />
+													<label class="form-check-label" for="qc34">Slightly Agree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qc3" id="qc35"
+														value="5" />
+													<label class="form-check-label" for="qc35">Agree</label>
+												</div>
+
+
+												<p class="fw-bold">12.Make a mess of things</p>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qc4" id="qc41"
+														value="1" required />
+													<label class="form-check-label" for="qc41">Disagree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qc4" id="qc42"
+														value="2" />
+													<label class="form-check-label" for="qc42">Slighty Disagree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qc4" id="qc43"
+														value="3" />
+													<label class="form-check-label" for="qc43">Neutral</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qc4" id="qc44"
+														value="4" />
+													<label class="form-check-label" for="qc44">Slightly Agree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qc4" id="qc45"
+														value="5" />
+													<label class="form-check-label" for="qc45">Agree</label>
+												</div>
+											</div>
+										</div>
+
+
+										<!--Conscientiousness end-->
+
+										<!--Agreeableness -->
+
+										<div class="card">
+											<div class="card-body">
+												<p class="fw-bold">13.Feel a little concern for others</p>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qa1" id="qa11"
+														value="1" required />
+													<label class="form-check-label" for="qa11">Disagree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qa1" id="qa12"
+														value="2" />
+													<label class="form-check-label" for="qa12">Slighty Disagree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qa1" id="qa13"
+														value="3" />
+													<label class="form-check-label" for="qa13">Neutral</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qa1" id="qa14"
+														value="4" />
+													<label class="form-check-label" for="qa14">Slightly Agree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qa1" id="qa15"
+														value="5" />
+													<label class="form-check-label" for="qa15">Agree</label>
+												</div>
+
+
+												<p class="fw-bold">14.Am interested in people</p>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qa2" id="qa21"
+														value="1" required />
+													<label class="form-check-label" for="qa21">Disagree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qa2" id="qa22"
+														value="2" />
+													<label class="form-check-label" for="qa22">Slighty Disagree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qa2" id="qa23"
+														value="3" />
+													<label class="form-check-label" for="qa23">Neutral</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qa2" id="qa24"
+														value="4" />
+													<label class="form-check-label" for="qa24">Slightly Agree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qa2" id="qa25"
+														value="5" />
+													<label class="form-check-label" for="qa25">Agree</label>
+												</div>
+
+
+												<p class="fw-bold">15.Insult and belittle others</p>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qa3" id="qa31"
+														value="1" required />
+													<label class="form-check-label" for="qa31">Disagree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qa3" id="qa32"
+														value="2" />
+													<label class="form-check-label" for="qa32">Slighty Disagree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qa3" id="qa33"
+														value="3" />
+													<label class="form-check-label" for="qa33">Neutral</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qa3" id="qa34"
+														value="4" />
+													<label class="form-check-label" for="qa34">Slightly Agree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qa3" id="qa35"
+														value="5" />
+													<label class="form-check-label" for="qa35">Agree</label>
+												</div>
+
+
+												<p class="fw-bold">16.Symathize with others feelings</p>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qa4" id="qa41"
+														value="1" required />
+													<label class="form-check-label" for="qa41">Disagree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qa4" id="qa42"
+														value="2" />
+													<label class="form-check-label" for="qa42">Slighty Disagree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qa4" id="qa43"
+														value="3" />
+													<label class="form-check-label" for="qa43">Neutral</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qa4" id="qa44"
+														value="4" />
+													<label class="form-check-label" for="qa44">Slightly Agree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qa4" id="qa45"
+														value="5" />
+													<label class="form-check-label" for="qa45">Agree</label>
+												</div>
+											</div>
+										</div><br>
+
+
+
+										<!--Agreeableness end-->
+
+										<!--Extraversion -->
+
+										<div class="card">
+											<div class="card-body">
+												<p class="fw-bold">17.Am the life of the party</p>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qe1" id="qe11"
+														value="1" required />
+													<label class="form-check-label" for="qe11">Disagree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qe1" id="qe12"
+														value="2" />
+													<label class="form-check-label" for="qe12">Slighty Disagree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qe1" id="qe13"
+														value="3" />
+													<label class="form-check-label" for="qe13">Neutral</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qe1" id="qe14"
+														value="4" />
+													<label class="form-check-label" for="qe14">Slightly Agree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qe1" id="qe15"
+														value="5" />
+													<label class="form-check-label" for="qe15">Agree</label>
+												</div>
+
+
+												<p class="fw-bold">18.Dont talk a lot</p>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qe2" id="qe21"
+														value="1" required />
+													<label class="form-check-label" for="qe21">Disagree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qe2" id="qe22"
+														value="2" />
+													<label class="form-check-label" for="qe22">Slighty Disagree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qe2" id="qe23"
+														value="3" />
+													<label class="form-check-label" for="qe23">Neutral</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qe2" id="qe24"
+														value="4" />
+													<label class="form-check-label" for="qe24">Slightly Agree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qe2" id="qe25"
+														value="5" />
+													<label class="form-check-label" for="qe25">Agree</label>
+												</div>
+
+
+												<p class="fw-bold">19.Feel comfortable around people</p>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qe3" id="qe31"
+														value="1" required />
+													<label class="form-check-label" for="qe31">Disagree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qe3" id="qe32"
+														value="2" />
+													<label class="form-check-label" for="qe32">Slighty Disagree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qe3" id="qe33"
+														value="3" />
+													<label class="form-check-label" for="qe33">Neutral</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qe3" id="qe34"
+														value="4" />
+													<label class="form-check-label" for="qe34">Slightly Agree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qe3" id="qe35"
+														value="5" />
+													<label class="form-check-label" for="qe35">Agree</label>
+												</div>
+
+
+												<p class="fw-bold">20.Keep in the background</p>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qe4" id="qe41"
+														value="1" required />
+													<label class="form-check-label" for="qe41">Disagree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qe4" id="qe42"
+														value="2" />
+													<label class="form-check-label" for="qe42">Slighty Disagree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qe4" id="qe43"
+														value="3" />
+													<label class="form-check-label" for="qe43">Neutral</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qe4" id="qe44"
+														value="4" />
+													<label class="form-check-label" for="qe44">Slightly Agree</label>
+												</div>
+												<div class="form-check mb-2">
+													<input class="form-check-input" type="radio" name="qe4" id="qe45"
+														value="5" />
+													<label class="form-check-label" for="qe45">Agree</label>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+
+			</form>
+
+			<!--Extraversion end-->
+
+			<div class="col-12 mt-3 mb-3">
+				<button type="submit" class="btn btn-primary w-100" onclick="check()">Submit</button>
+			</div>
+		</div>
+
+	</div>
+	</div>
+	<div class="col-md-3"></div>
+	</div>
+
+	</form>
+
+	</div>
+
+	</div>
+	<footer class="style3">
+		<div class="block">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-3 column">
+						<div class="widget">
+							<div class="about_widget">
+								<div class="logo">
+									<a href="#" title=""><img src="{% static 'images/resource/logo9.png'%}"
+											alt="" /></a>
+								</div>
+								<span>Anitta Antony, Thrissur 680000, India.</span>
+								<span>+1 246-345-0695</span>
+								<span>anitta@jobhunt.com</span>
+								<div class="social">
+									<a href="#" title=""><i class="fa fa-facebook"></i></a>
+									<a href="#" title=""><i class="fa fa-twitter"></i></a>
+									<a href="#" title=""><i class="fa fa-linkedin"></i></a>
+									<a href="#" title=""><i class="fa fa-pinterest"></i></a>
+									<a href="#" title=""><i class="fa fa-behance"></i></a>
+								</div>
+								<div>
+
+								</div>
+							</div><!-- About Widget -->
+						</div>
+					</div>
+
+					<div class="col-lg-3 column">
+						<div class="widget">
+							<div class="download_widget">
+								<a href="#" title=""><img src="{% static 'images/resource/di.png'%}" alt="" /></a>
+								<a href="#" title=""><img src="{% static 'images/resource/di2.png'%}" alt="" /></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="bottom-line style3">
+			<div class="container">
+				<span>© 2022 Jobhunt All rights reserved. Design by Anitta Antony</span>
+				<a class="back-top" href="#scrollup" title=""><i class="la la-long-arrow-up"></i></a>
+			</div>
+		</div>
+	</footer>
+
+
+
+
+</body>
+
+</html>
+
+
+
+<script>
+	function check() {
+		var nbr;
+		nbr = Number(document.getElementById("age").value);
+		if (nbr < 17 || nbr > 28) {
+			alert("Please enter a age between 17 to 28");
+		}
+	}
+</script>
